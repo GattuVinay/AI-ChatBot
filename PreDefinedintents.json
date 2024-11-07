@@ -1,0 +1,56 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "How can you help me",
+        "I have a Query",
+        "????"
+      ],
+      "responses": [
+        "Hi greate to see you how can i help you!",
+        "Good to seen you",
+        "Hello",
+        "Specify your Query"
+      ],
+      "context_set": ""
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "cyu",
+        "Good see you",
+        "Have a good day"
+      ],
+      "responses": [
+        "Thanks, feel free to ask me",
+        "Do you have any thing to help"
+      ],
+      "context_set": ""
+    },
+    {
+      "tag": "Objectives",
+      "patterns": [
+        "Objectives",
+        "Can you navigate to Objectives",
+        "Open Objectives",
+        "How can i open objectives"
+      ],
+      "responses": [
+        "<a href=\"https://cognine.keka.com/#/performance/objectives/me/summary\">Objectives</a>"
+      ]
+    },
+    {
+      "tag": "Help desk",
+      "patterns": [
+        "open Helpdesk",
+        "Navigate to Help desk",
+        "Helpdesk",
+        "Show Helpdesk"
+      ],
+      "responses":[ "<a href=\"https://cognine.keka.com/#/me/helpdesk/mytickets\">ClickHere</a>"]
+    }
+  ]
+}

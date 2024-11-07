@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #chatbox { width: 100%; max-width: 600px; margin: 0 auto; }
+        #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+        .message { margin-bottom: 10px; }
+        .user { color: blue; }
+        .bot { color: green; }
+        #input { width: calc(100% - 80px); }
+        #send { width: 70px; }
+    </style>
+    <script>
+        function sendMessage() {
+            const message = document.getElementById("input").value;
+            if (message) {
+                const userMessage = `<div class="message user">You: ${message}</div>`;
+                document.getElementById("messages").innerHTML += userMessage;
+                document.getElementById("input").value = "";
+
+                fetch("/get_response", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const botMessage = `<div class="message bot">Mira: ${data.response}</div>`;
+                    document.getElementById("messages").innerHTML += botMessage;
+                    document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="chatbox">
+        <h2>Chat with the Bot</h2>
+        <div id="messages"></div>
+        <input type="text" id="input" placeholder="Type your message here..." onkeypress="if(event.key === 'Enter') sendMessage()">
+        <button id="send" onclick="sendMessage()">Send</button>
+    </div>
+</body>
+</html>
